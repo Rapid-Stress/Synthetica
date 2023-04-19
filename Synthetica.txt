@@ -1,0 +1,75 @@
+﻿Synthetica 
+programming language 
+Version 0.0.2 ALPHA
+
+
+Variables:
+      Note: variables are written in camelCase.
+1. Int - Int is a data type for storing whole numbers. Example: (Int myNum = 56).
+2. Float - Float is a data type for storing whole numbers. Example: (Float myFloat = 3.916f). Note: Any Float literal should have the suffix "f".
+3. Bool - Bool is the data type for storing "True" or "False" values. Example: (Bool state = True)
+4. String - String is data type for storing sentences. Example: (String myString = #Hello world#). Note: Any String literal should have "#" surrounding it.
+5. Stream - Stream is a data type to store a list of anything like numbers, sentences, objects. Example: (Stream[Int] myList = create Stream<3, -7, 55, -131, 314, 2, 66>()). Note: Streams need to be specified the type with "[]" symbols and needs to be created with the "create" keyword. You can initialize some values in the stream by "<>" symbols but you DON’T need to specify the type in the angular brackets “<Int>”.
+6. Event - You can create a field that points to a function, and call it using the special “invoke” keyword. Example: (Event e = create Event<ReturnType>()).
+
+
+Keywords (new in 0.0.2 UPDATE!):
+
+
+1. call - You can use this keyword to invoke or call a group or function. Example: (call Function(args)).
+2. create - You can use this keyword to instantiate or create an object or vortex. Example: (create MyObject(args)).
+3. const - You can write this keyword in front of variable declaration and say that it’s never going to change. Example: (const Int NUMBER = 50).
+4. ptr - You can use this keyword in front of variable declaration to mark it as a pointer. Example: (ptr Int MyIntPtr = **SomeVar**). Note: You need to get a memory address of a variable to assign it to pointer with this operator- **____**, Like in the example. Also you can dereference a pointer like this: ($MyIntPtr).
+5. static - You can use this keyword in variables in a class that will correspond to the actual class and not the instance.
+
+
+Groups (functions):
+
+
+1. Groups or functions can be defined by the "Group" keyword. Example: (Group Task(Int param) { } ). Note: Groups have a PascalCase signature.
+2. Any Group can be called with the "call" keyword, like this ( call Task(5) )
+3. Group can return a value by specifying the type surrounded by "[]". Example : (Group[Float] Double(Int value) { return value * 2f }). Note: If a Group returns nothing or "void" you don't need to specify any return type (as the example in 1.)
+4. You can also define anonymous or lambda functions. Example: ((Int param) -> { return param++ }). Note: The lambdas are dynamically targeted. So you don’t need to specify a return type.
+5. There are some built-in Groups like - Print(String text) - prints "text" to console, ReadLine - returns what user has typed in the console, Random(Float min, Float max) - returns a random number between "min" and "max" value, Pow(Float value, Float factor) - returns the "value" raised to the "factor" Sqrt(float value) - returns the square root of the "value" Stream.Push(Target target) - adds an element to the end of a stream and also here "Target" means the type of the stream it was created in, Stream.PushAll(Stream other) - pushes an entire stream to another stream, Stream.Get(Int index) - returns the element at that index, Stream.Clear() - clears the stream, InstanceOf(Object object, Data.Type type) - checks if the object is a instance of the type, Event.Subscribe(groupName), Event.Unsubscribe(groupName).
+
+
+Operators:
+1. "+" - Adds two numbers.
+2. "-" - Subtracts two numbers.
+3. "*" - Multiplies two numbers.
+4. "++" - Increments a number.
+5. "--" - Decrements a number.
+6. "+=" - Adds two numbers and stores the result.
+7. "-=" - Subtracts two numbers and stores the result.
+8. "/" - Divides two numbers.
+9. "=" - Assigns a value.
+10. "==" - Checks if two thing are 
+equal.
+11. "!=" - Opposite of "==".
+12.  ">=" Checks if a number is bigger than the other.
+13. "<=" Checks if a number is less than the other.
+14. "!" - Inverts a Bool.
+15. “->” - Used for Lambdas.
+16. "*-*" - Reverses a String!
+17. “****” - Used to get the memory address of a variable.
+18. “$” - Used to dereference a pointer.
+
+
+Objects:
+1. "Vortex" is the keyword for defining an object. Example: (Vortex MyObject = { }). Note: we need to say "= {}" to create a method body.
+2. The object can have a Group called "Constructor". It's called when the object is instantiated by "create" keyword. Example: (Vortex MyNewObject = { Group Constructor(Int param) { } })
+3. We can instantiate an object by the "create" keyword. Example: (MyNewObject myNewObject = create MyNewObject(params)).
+4. Objects can have fields and groups like this: (Vortex Student = { Int age = 12 
+Group SayAge() { call Print(age) } }
+5. You can access anything inside a class by "." operator - (student.age++) or (call student.SayAge()).
+
+
+Statements:
+1. If-Else - checks if a Bool value is true after that executes the "then {}" code. Example: (If(someCondition) then { call DoSomething() } Else then { call DoSomethingElse() })
+2. For loop - loops over a specific number of times. Example : (For (Int i = 0, i < 10, i++) then { }).
+3. ForEach loop - loops over every element in a Stream. Example : (ForEach (Object obj in objects) then {}).
+4. While loop - loops till a Bool is True. Example: (While(running) then { })
+
+
+Misc:
+1. “!!” - Used to add comments that will not be compiled. Useful for documentation of code! Example: (!! This is a comment, it will not affect the code at all!)
